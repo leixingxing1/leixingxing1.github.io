@@ -27,7 +27,6 @@ leixingxing1.github.io/
 ├── photo.jpg                   # your profile photo
 ├── images/                     # paper thumbnails
 │   ├── qhyer.png
-│   ├── return_consistency.png
 │   ├── gchr.png
 │   ├── mgda.png
 │   └── icip2019.png
@@ -85,7 +84,6 @@ Use these exact filenames so they match the HTML:
 | Paper | Filename |
 |-------|----------|
 | QHyer (ICML 2026) | `images/qhyer.png` |
-| Return Consistency (IJCNN 2026) | `images/return_consistency.png` |
 | GCHR (arXiv 2025) | `images/gchr.png` |
 | MGDA (AAAI 2025) | `images/mgda.png` |
 | Hardware Friendly CNN (ICIP 2019) | `images/icip2019.png` |
@@ -109,7 +107,7 @@ And replace it with:
 </div>
 ```
 
-Repeat for all 5 papers.
+Repeat for all 4 papers.
 
 **💡 Tip:** If you don't have a thumbnail yet, just leave the placeholder — the page still looks clean with the gray placeholder showing the filename. Add images later as you make them.
 
