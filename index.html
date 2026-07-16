@@ -232,30 +232,30 @@
 
   .pub-list { list-style: none; padding: 0; margin: 0; }
   .pub {
-    display: grid;
-    grid-template-columns: 224px 1fr;
-    gap: 26px;
     padding: 26px 0;
     border-bottom: 1px solid var(--rule);
-    align-items: start;
   }
   .pub:first-child { padding-top: 4px; }
   .pub:last-child { border-bottom: none; }
 
+  .pub-row {
+    display: grid;
+    grid-template-columns: 264px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
   .pub-thumb {
-    width: 224px;
-    height: 142px;
+    width: 264px;
+    height: 158px;
     background: var(--panel);
     border: 1px solid var(--rule);
     border-radius: 11px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .pub-thumb:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.10); }
-  .pub-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 9px; }
+  .pub-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .badge {
     display: inline-block;
@@ -276,9 +276,9 @@
     font-size: 20px;
     font-weight: 700;
     color: var(--ink);
-    line-height: 1.35;
+    line-height: 1.3;
     letter-spacing: -0.01em;
-    margin: 0 0 8px;
+    margin: 0 0 15px;
   }
   .pub-authors {
     font-size: 15.5px;
@@ -334,6 +334,45 @@
     color: var(--muted);
   }
 
+  /* ---------- Publications: sub-sections & compact rows ---------- */
+  .subsec {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 6px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .pub-list + .subsec { margin-top: 40px; }
+
+  .pub.mini { padding: 18px 0; }
+  .pub.mini .pub-title { font-size: 18px; margin: 0 0 10px; }
+
+  .lead b { color: var(--ink); font-weight: 700; }
+
+  /* ---------- Honors & Awards ---------- */
+  .award-list { list-style: none; padding: 0; margin: 0; }
+  .award-list li {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-size: 16.5px;
+    color: var(--ink-2);
+  }
+  .award-list li:last-child { border-bottom: none; }
+  .award-list .yr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+  .award-list b { color: var(--ink); font-weight: 600; }
+
   /* ---------- Motion ---------- */
   @keyframes fade { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
   .sidebar, .content section { animation: fade 0.5s ease-out backwards; }
@@ -341,6 +380,7 @@
   .content section:nth-of-type(2) { animation-delay: 0.14s; }
   .content section:nth-of-type(3) { animation-delay: 0.22s; }
   .content section:nth-of-type(4) { animation-delay: 0.30s; }
+  .content section:nth-of-type(5) { animation-delay: 0.38s; }
 
   ::selection { background: var(--accent); color: #fff; }
 
@@ -366,8 +406,8 @@
     .social { justify-content: center; }
 
     .sec-title { font-size: 25px; }
-    .pub { grid-template-columns: 1fr; gap: 15px; }
-    .pub-thumb { width: 100%; height: 190px; }
+    .pub-row { grid-template-columns: 1fr; gap: 14px; }
+    .pub-thumb { width: 100%; height: 200px; }
     .news li { grid-template-columns: 1fr; gap: 3px; padding: 14px 0; }
     .news .date { padding-top: 0; }
   }
@@ -418,31 +458,22 @@
   <!-- ==================== MAIN ==================== -->
   <main class="content">
 
-    <section id="about">
+        <section id="about">
       <h2 class="sec-title"><span class="em">👋</span>About Me</h2>
       <p class="lead">
-        Hi, I am Xing Lei (雷星), a Ph.D. student at the
+        Hi, I am Xing Lei (雷星), a Ph.D. student in Artificial Intelligence at the
         <a href="http://iair.xjtu.edu.cn/" target="_blank">School of Artificial Intelligence</a>,
-        <a href="https://www.xjtu.edu.cn/" target="_blank">Xi'an Jiaotong University</a>,
-        majoring in Artificial Intelligence (2020–present). Before that, I obtained my Master's degree in
-        Software Engineering from Xi'an Jiaotong University (2019), and my Bachelor's degree in Computer
-        Science from <a href="https://www.chd.edu.cn/" target="_blank">Chang'an University</a> (2016).
+        <a href="https://www.xjtu.edu.cn/" target="_blank">Xi'an Jiaotong University</a> (2020–present).
+        I received my M.S. in Software Engineering from Xi'an Jiaotong University (2019) and my B.S. in
+        Computer Science from <a href="https://www.chd.edu.cn/" target="_blank">Chang'an University</a> (2016).
       </p>
       <p class="lead">
-        The central goal of my research is to build decision-making agents that learn efficiently from
-        offline data and generalize to a wide variety of unseen goals and environments. I pursue this by
-        developing <em>sample-efficient</em> and <em>generalizable</em> deep reinforcement learning (RL)
-        algorithms for robust behavior in both simulated and real-world tasks. In particular, I study three
-        main topics:
+        🔭 My research interests lie in <b>offline goal-conditioned reinforcement learning</b>,
+        <b>sample-efficient reinforcement learning</b>, and <b>sequence modeling with Transformers and Mamba
+        for decision making</b> — with a focus on trajectory stitching, goal representations, and
+        history-aware architectures.
       </p>
-      <ul class="topics">
-        <li><b>Offline Goal-conditioned Reinforcement Learning:</b> learning multi-goal policies from static
-          datasets via weighted supervised learning, hindsight relabeling, and data augmentation.</li>
-        <li><b>Sample-efficient Reinforcement Learning:</b> hindsight regularization, model-based goal
-          augmentation, and extracting maximum value from limited interaction.</li>
-        <li><b>Sequence Modeling for Decision Making:</b> transformer- and Mamba-based architectures for
-          offline RL, return-conditioned policies, and bridging sequence modeling with the max-return objective.</li>
-      </ul>
+      <p class="lead">✉️ Welcome to reach out for any discussion and collaboration!</p>
     </section>
 
     <section id="news">
@@ -461,7 +492,7 @@
           <span>One paper (<em>QHyer</em>) is accepted by <strong>ICML 2026</strong>.</span>
         </li>
         <li>
-          <span class="date">2025.10</span>
+          <span class="date">2025.08</span>
           <span>One paper (<em>GCHR</em>) is released on arXiv — goal-conditioned hindsight regularization for sample-efficient RL.</span>
         </li>
         <li>
@@ -479,84 +510,126 @@
       </ul>
     </section>
 
-    <section id="publications">
+        <section id="publications">
       <h2 class="sec-title"><span class="em">📝</span>Publications</h2>
       <p class="note"><em>* Equal contribution. Full list available on
         <a href="https://scholar.google.com/citations?user=YzHtsQ8AAAAJ&hl=zh-CN" target="_blank">Google Scholar</a>.</em></p>
 
+      <h3 class="subsec">Published</h3>
       <ul class="pub-list">
 
         <li class="pub">
-          <div class="pub-thumb"><img src="images/dagr.png" alt="DAGR"></div>
-          <div class="pub-body">
-            <span class="badge arxiv">arXiv 2026</span>
-            <div class="pub-title">DAGR: State-Conditioned Goal Representations via Difference-Aware Goal Cross-Attention</div>
-            <div class="pub-authors"><span class="me">Xing Lei</span>, Wenyan Yang, Xuetao Zhang, Donglin Wang</div>
-            <div class="pub-links">
-              <a href="https://arxiv.org/abs/2607.13731" target="_blank">Paper</a>
-              <a href="https://github.com/leixingxing1/DAGR" target="_blank">Code</a>
+          <div class="pub-title">QHyer: Q-conditioned Hybrid Attention-mamba Transformer for Offline Goal-conditioned RL</div>
+          <div class="pub-row">
+            <div class="pub-thumb"><img src="images/qhyer.png" alt="QHyer"></div>
+            <div class="pub-body">
+              <span class="badge conf">ICML 2026</span>
+              <div class="pub-authors"><span class="me">Xing Lei</span>, Jincheng Wang, Xuetao Zhang, Donglin Wang</div>
+              <div class="pub-links">
+                <a href="https://arxiv.org/abs/2605.01862" target="_blank">arXiv</a>
+              </div>
             </div>
           </div>
         </li>
 
         <li class="pub">
-          <div class="pub-thumb"><img src="images/nftr.png" alt="NFTR"></div>
-          <div class="pub-body">
-            <span class="badge arxiv">arXiv 2026</span>
-            <div class="pub-title">NFTR: From Provable Mode-Averaging to Geodesic Subgoal Selection in Offline Goal-Conditioned RL</div>
-            <div class="pub-authors">Erdemt Bao*, <span class="me">Xing Lei</span>*, Jun Chen</div>
-            <div class="pub-links">
-              <a href="https://arxiv.org/abs/2607.07855" target="_blank">Paper</a>
-              <a href="https://github.com/erdemtbao/NFTR" target="_blank">Code</a>
+          <div class="pub-title">MGDA: Model-based Goal Data Augmentation for Offline Goal-conditioned Weighted Supervised Learning</div>
+          <div class="pub-row">
+            <div class="pub-thumb"><img src="images/mgda.png" alt="MGDA"></div>
+            <div class="pub-body">
+              <span class="badge conf">AAAI 2025 · Oral</span>
+              <div class="pub-authors"><span class="me">Xing Lei</span>, Xuetao Zhang, Donglin Wang</div>
+              <div class="pub-links">
+                <a href="https://ojs.aaai.org/index.php/AAAI/article/view/33999" target="_blank">Paper</a>
+                <a href="https://arxiv.org/abs/2412.11410" target="_blank">arXiv</a>
+              </div>
             </div>
           </div>
         </li>
 
         <li class="pub">
-          <div class="pub-thumb"><img src="images/qhyer.png" alt="QHyer"></div>
-          <div class="pub-body">
-            <span class="badge conf">ICML 2026</span>
-            <div class="pub-title">QHyer: Q-conditioned Hybrid Attention-mamba Transformer for Offline Goal-conditioned RL</div>
-            <div class="pub-authors"><span class="me">Xing Lei</span>, Jincheng Wang, Xuetao Zhang, Donglin Wang</div>
-            <div class="pub-links">
-              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YzHtsQ8AAAAJ&citation_for_view=YzHtsQ8AAAAJ:roLk4NBRz8UC" target="_blank">Paper</a>
+          <div class="pub-title">Exploring Hardware Friendly Bottleneck Architecture in CNN for Embedded Computing Systems</div>
+          <div class="pub-row">
+            <div class="pub-thumb"><img src="images/icip2019.png" alt="Hardware Friendly CNN"></div>
+            <div class="pub-body">
+              <span class="badge conf">ICIP 2019</span>
+              <div class="pub-authors"><span class="me">Xing Lei</span>, Longjun Liu, Zhiheng Zhou, Hongbin Sun, Nanning Zheng</div>
+              <div class="pub-links">
+                <a href="https://ieeexplore.ieee.org/document/8803684" target="_blank">Paper</a>
+                <a href="https://arxiv.org/abs/2403.06352" target="_blank">arXiv</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+      <h3 class="subsec">Preprints &amp; Under Submission</h3>
+      <ul class="pub-list">
+
+        <li class="pub">
+          <div class="pub-title">DAGR: State-Conditioned Goal Representations via Difference-Aware Goal Cross-Attention</div>
+          <div class="pub-row">
+            <div class="pub-thumb"><img src="images/dagr.png" alt="DAGR"></div>
+            <div class="pub-body">
+              <span class="badge arxiv">arXiv 2026</span>
+              <div class="pub-authors"><span class="me">Xing Lei</span>, Wenyan Yang, Xuetao Zhang, Donglin Wang</div>
+              <div class="pub-links">
+                <a href="https://arxiv.org/abs/2607.13731" target="_blank">arXiv</a>
+                <a href="https://github.com/leixingxing1/DAGR" target="_blank">Code</a>
+              </div>
             </div>
           </div>
         </li>
 
         <li class="pub">
-          <div class="pub-thumb"><img src="images/gchr.png" alt="GCHR"></div>
+          <div class="pub-title">NFTR: From Provable Mode-Averaging to Geodesic Subgoal Selection in Offline Goal-Conditioned RL</div>
+          <div class="pub-row">
+            <div class="pub-thumb"><img src="images/nftr.png" alt="NFTR"></div>
+            <div class="pub-body">
+              <span class="badge arxiv">arXiv 2026</span>
+              <div class="pub-authors">Erdemt Bao*, <span class="me">Xing Lei</span>*, Jun Chen</div>
+              <div class="pub-links">
+                <a href="https://arxiv.org/abs/2607.07855" target="_blank">arXiv</a>
+                <a href="https://github.com/erdemtbao/NFTR" target="_blank">Code</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <div class="pub-title">GCHR: Goal-Conditioned Hindsight Regularization for Sample-Efficient Reinforcement Learning</div>
+          <div class="pub-row">
+            <div class="pub-thumb"><img src="images/gchr.png" alt="GCHR"></div>
+            <div class="pub-body">
+              <span class="badge arxiv">arXiv 2025</span>
+              <div class="pub-authors"><span class="me">Xing Lei</span>, Wenyan Yang, Kaiqiang Ke, Shentao Yang, Xuetao Zhang, Joni Pajarinen, Donglin Wang</div>
+              <div class="pub-links">
+                <a href="https://arxiv.org/abs/2508.06108" target="_blank">arXiv</a>
+                <a href="https://github.com/leixingxing1/GCHR" target="_blank">Code</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="pub mini">
+          <div class="pub-title">Closing the Gap between TD Learning and Supervised Learning with Q-Conditioned Maximization</div>
           <div class="pub-body">
             <span class="badge arxiv">arXiv 2025</span>
-            <div class="pub-title">GCHR: Goal-Conditioned Hindsight Regularization for Sample-Efficient Reinforcement Learning</div>
-            <div class="pub-authors"><span class="me">Xing Lei</span>, Wenyan Yang, Xuetao Zhang, Joni Pajarinen, Donglin Wang</div>
+            <div class="pub-authors"><span class="me">Xing Lei</span>, Zifeng Zhuang, Shentao Yang, Sheng Xu, Yunhao Luo, Fei Shen, Wenyan Yang, Xuetao Zhang, Donglin Wang</div>
             <div class="pub-links">
-              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YzHtsQ8AAAAJ&citation_for_view=YzHtsQ8AAAAJ:WF5omc3nYNoC" target="_blank">Paper</a>
-              <a href="https://github.com/leixingxing1/GCHR" target="_blank">Code</a>
+              <a href="https://arxiv.org/abs/2506.00795" target="_blank">arXiv</a>
             </div>
           </div>
         </li>
 
-        <li class="pub">
-          <div class="pub-thumb"><img src="images/mgda.png" alt="MGDA"></div>
+        <li class="pub mini">
+          <div class="pub-title">Q-WSL: Optimizing Goal-Conditioned RL with Weighted Supervised Learning via Dynamic Programming</div>
           <div class="pub-body">
-            <span class="badge conf">AAAI 2025</span>
-            <div class="pub-title">MGDA: Model-based Goal Data Augmentation for Offline Goal-conditioned Weighted Supervised Learning</div>
-            <div class="pub-authors"><span class="me">Xing Lei</span>, Xuetao Zhang, Donglin Wang</div>
+            <span class="badge arxiv">arXiv 2024</span>
+            <div class="pub-authors"><span class="me">Xing Lei</span>, Zifeng Zhuang, Xuetao Zhang, Donglin Wang</div>
             <div class="pub-links">
-              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YzHtsQ8AAAAJ&citation_for_view=YzHtsQ8AAAAJ:Y0pCki6q_DkC" target="_blank">Paper</a>
-            </div>
-          </div>
-        </li>
-
-        <li class="pub">
-          <div class="pub-thumb"><img src="images/icip2019.png" alt="Hardware Friendly CNN"></div>
-          <div class="pub-body">
-            <span class="badge conf">ICIP 2019</span>
-            <div class="pub-title">Exploring Hardware Friendly Bottleneck Architecture in CNN for Embedded Computing Systems</div>
-            <div class="pub-authors"><span class="me">Xing Lei</span>, Longjun Liu, Zhiheng Zhou, Hongbin Sun, Nanning Zheng</div>
-            <div class="pub-links">
-              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YzHtsQ8AAAAJ&citation_for_view=YzHtsQ8AAAAJ:u-x6o8ySG0sC" target="_blank">Paper</a>
+              <a href="https://arxiv.org/abs/2410.06648" target="_blank">arXiv</a>
             </div>
           </div>
         </li>
@@ -575,6 +648,13 @@
             <li>ICLR 2025</li>
           </ul>
         </li>
+      </ul>
+    </section>
+
+    <section id="honors">
+      <h2 class="sec-title"><span class="em">🏅</span>Honors &amp; Awards</h2>
+      <ul class="award-list">
+        <li><span class="yr">2013</span><span><b>Outstanding Student Cadre</b> (优秀学生干部), Chang'an University</span></li>
       </ul>
     </section>
 
