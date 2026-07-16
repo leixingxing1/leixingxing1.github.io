@@ -30,6 +30,7 @@
 
   body {
     margin: 0;
+    overflow-x: clip;
     background: var(--bg);
     color: var(--ink-2);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -375,6 +376,11 @@
   }
   .award-list b { color: var(--ink); font-weight: 600; }
 
+  /* ---------- Overflow safety / guaranteed centering ---------- */
+  .content { min-width: 0; }
+  .pub-body { min-width: 0; }
+  .pub-title, .pub-authors, .lead, .affil { overflow-wrap: break-word; }
+
   /* ---------- Motion ---------- */
   @keyframes fade { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
   .sidebar, .content section { animation: fade 0.5s ease-out backwards; }
@@ -539,7 +545,7 @@
           <div class="pub-row">
             <div class="pub-thumb"><img src="images/mgda.png" alt="MGDA"></div>
             <div class="pub-body">
-              <span class="badge conf">AAAI 2025</span>
+              <span class="badge conf">AAAI 2025 · Oral</span>
               <div class="pub-authors"><span class="me">Xing Lei</span>, Xuetao Zhang, Donglin Wang</div>
               <div class="pub-links">
                 <a href="https://ojs.aaai.org/index.php/AAAI/article/view/33999" target="_blank">Paper</a>
